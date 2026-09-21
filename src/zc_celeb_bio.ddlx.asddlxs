@@ -1,0 +1,119 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Celebrity Biography',
+    typeNamePlural: 'Biographies',
+    title: { type: #STANDARD, value: 'FullName' }, // Note: fixed 'Fullname' to 'FullName' to match your case
+    description: { type: #STANDARD, value: 'Profession' }
+  }
+}
+annotate view ZC_CELEB_BIO with
+{
+  @UI.facet: [
+    { id: 'BasicInfo', purpose: #STANDARD, type: #FIELDGROUP_REFERENCE, label: 'Basic Info', position: 10, targetQualifier: 'Basic' },
+    { id: 'ProfInfo', purpose: #STANDARD, type: #FIELDGROUP_REFERENCE, label: 'Professional Info', position: 20, targetQualifier: 'Prof' },
+    { id: 'PersonalInfo', purpose: #STANDARD, type: #FIELDGROUP_REFERENCE, label: 'Personal Details', position: 30, targetQualifier: 'Personal' }
+  ]
+
+  @EndUserText.label: 'Celebrity Id'
+  @UI: { 
+    lineItem: [ { position: 10 } ], 
+    fieldGroup: [ { qualifier: 'Basic', position: 10 } ],
+    identification: [ { position: 10 } ] 
+  }
+  CelebId;
+  
+  @EndUserText.label: 'Full name'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Basic', position: 30 } ],
+    identification: [ { position: 20 } ] 
+  }
+  FullName;
+  
+  @EndUserText.label: 'Date of birth'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Basic', position: 40 } ],
+    identification: [ { position: 30 } ] 
+  }
+  DateOfBirth;
+  
+  @EndUserText.label: 'Gender'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Basic', position: 50 } ],
+    identification: [ { position: 40 } ] 
+  }
+  Gender;
+   
+  @EndUserText.label: 'Profession'
+  @UI: { 
+    lineItem: [ { position: 30 } ], 
+    fieldGroup: [ { qualifier: 'Prof', position: 10 } ],
+    identification: [ { position: 50 } ] 
+  }
+  Profession;
+  
+  @EndUserText.label: 'Known For'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Prof', position: 20 } ],
+    identification: [ { position: 60 } ] 
+  }
+  KnownFor;
+  
+  @EndUserText.label: 'Debut year'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Prof', position: 30 } ],
+    identification: [ { position: 70 } ] 
+  }
+  DebutYear;
+  
+  @EndUserText.label: 'Active status'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Prof', position: 40 } ],
+    identification: [ { position: 80 } ] 
+  }
+  ActiveStatus;
+
+    @EndUserText.label: 'Nationality'
+  @UI: { 
+    lineItem: [ { position: 40 } ], 
+    fieldGroup: [ { qualifier: 'Personal', position: 10 } ],
+    identification: [ { position: 90 } ] 
+  }
+  Nationality;
+
+  @EndUserText.label: 'country'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Personal', position: 20 } ],
+    identification: [ { position: 100 } ] 
+  }
+  Country;
+
+    @EndUserText.label: 'birth place'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Personal', position: 30 } ],
+    identification: [ { position: 110 } ] 
+  }
+  BirthPlace;
+    @EndUserText.label: 'Mother Tongue'
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Personal', position: 40 } ],
+    identification: [ { position: 120 } ] 
+  }
+  Language;
+  
+  @EndUserText.label: 'Height'
+
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Personal', position: 50 } ],
+    identification: [ { position: 130 } ] 
+  }
+  Height;
+
+    @EndUserText.label: 'Instagram account' 
+  @UI: { 
+    fieldGroup: [ { qualifier: 'Personal', position: 60 } ],
+    identification: [ { position: 140 } ] 
+  }
+  Instagram;
+
+}

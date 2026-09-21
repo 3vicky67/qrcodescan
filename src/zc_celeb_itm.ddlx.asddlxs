@@ -1,0 +1,30 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Project',
+    typeNamePlural: 'Projects',
+    title: { type: #STANDARD, value: 'ProjTitle' }
+  }
+}
+annotate view ZC_CELEB_ITM with
+{
+  @UI.facet: [
+    { id: 'ProjectDetails', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Project Info', position: 10 }
+  ]
+  
+   @EndUserText.label: 'Number '
+  @UI: { lineItem: [ { position: 10 } ], identification: [ { position: 10 } ] }
+  ItemNo;
+   @EndUserText.label: 'Film or album Title'
+  @UI: { lineItem: [ { position: 20 } ], identification: [ { position: 20 } ] }
+  ProjTitle;
+    @EndUserText.label: 'Release Date'
+  @UI: { lineItem: [ { position: 30 } ], identification: [ { position: 30 } ] }
+  ProjYear;
+   @EndUserText.label: 'role'
+  @UI: { lineItem: [ { position: 40 } ], identification: [ { position: 40 } ] }
+  Role;
+   @EndUserText.label: 'BOX OFFICE COLLECTION'
+  @UI: { lineItem: [ { position: 50 } ], identification: [ { position: 50 } ] }
+  BoxOffice;
+}

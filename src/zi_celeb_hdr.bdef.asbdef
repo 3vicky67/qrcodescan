@@ -1,0 +1,106 @@
+managed implementation in class zbp_i_celeb_hdr unique;
+strict ( 2 );
+with draft;
+
+// ---------------------------------------------------------------------------
+// 1. HEADER (ROOT)
+// ---------------------------------------------------------------------------
+define behavior for ZI_CELEB_HDR alias Celebrity
+persistent table zceleb_hdr
+draft table zceleb_hdr_d
+lock master total etag LastChangedAt
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create; update; delete;
+
+  association _Projects { create; with draft; }
+  association _Bio { create; with draft; }
+
+  determination AutoCreateBio on modify { create; }
+
+  field ( readonly ) QrCodeUrl, CountryName,ImageUrlDisplay;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  action ( features : instance ) GenerateQRCode result [1] $self;
+  side effects { action GenerateQRCode affects field QrCodeUrl; }
+
+  mapping for zceleb_hdr
+  {
+    CelebId       = celeb_id;
+    ImageUrl      = image_url;
+    Name          = name;
+    DateOfBirth   = date_of_birth;
+    Country       = country;
+    QrCodeUrl     = qr_code_url;
+    LastChangedAt = last_changed_at;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 2. CHILD 1: PROJECTS
+// ---------------------------------------------------------------------------
+define behavior for ZI_CELEB_ITM alias Projects
+persistent table zceleb_itm
+draft table zceleb_itm_d
+lock dependent by _Celebrity
+authorization dependent by _Celebrity
+early numbering
+{
+  update; delete;
+
+  // Both keys are read-only! RAP handles CelebId, and Early Numbering handles ItemNo.
+  field ( readonly ) CelebId, ItemNo;
+
+  association _Celebrity { with draft; }
+
+  mapping for zceleb_itm
+  {
+    CelebId       = celeb_id;
+    ItemNo        = item_no;
+    ProjTitle     = proj_title;
+    projyear      = proj_year;
+    Role          = role;
+    BoxOffice     = box_office;
+    CurrencyCode  = currency_code;
+  }
+}
+// ---------------------------------------------------------------------------
+// 3. CHILD 2: BIO
+// ---------------------------------------------------------------------------
+define behavior for ZI_CELEB_BIO alias CelebrityBio
+persistent table zceleb_bio
+draft table zceleb_bio_d
+lock dependent by _Header
+authorization dependent by _Header
+{
+  update; delete;
+
+  field ( readonly ) CelebId;
+
+  association _Header { with draft; }
+
+  mapping for zceleb_bio
+  {
+    CelebId       = celeb_id;
+    FullName      = full_name;
+    DateOfBirth   = date_of_birth;
+    Gender        = gender;
+    Nationality   = nationality;
+    Profession    = profession;
+    KnownFor      = known_for;
+    DebutYear     = debut_year;
+    BirthPlace    = birth_place;
+    Height        = height;
+    Instagram     = instagram;
+    Language      = language;
+    Country       = country;
+    ActiveStatus  = active_status;
+    LastChangedAt = last_changed_at;
+  }
+}

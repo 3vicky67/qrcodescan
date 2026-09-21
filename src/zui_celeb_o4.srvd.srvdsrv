@@ -1,0 +1,6 @@
+@EndUserText.label: 'Celebrity OData V4 Service Definition'
+define service ZUI_CELEB_O4 {
+  expose ZC_CELEB_HDR as CelebrityHeader;
+  expose ZC_CELEB_ITM as CelebrityProjects;
+  expose ZC_CELEB_BIO as CelebrityBiography;
+}

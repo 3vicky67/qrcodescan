@@ -1,0 +1,68 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Celebrity',
+    typeNamePlural: 'Celebrities',
+    title: { type: #STANDARD, value: 'Name' },
+    description: { type: #STANDARD, value: 'CelebId' },
+    imageUrl: 'ImageUrl'
+  }
+}
+annotate view ZC_CELEB_HDR with
+{
+  @UI.facet: [
+    { 
+      id: 'CelebrityHeader', 
+      purpose: #STANDARD, 
+      type: #IDENTIFICATION_REFERENCE, 
+      label: 'Celebrity Details', 
+      position: 10 
+    },
+    {
+      id:            'BioSection',
+      type:          #IDENTIFICATION_REFERENCE, // <--- CHANGE THIS FROM #LINEITEM_REFERENCE
+      label:         'Biography',
+      position:      20,
+      targetElement: '_Bio',
+      hidden:        #(IsActiveEntity) 
+    },
+    { 
+      id: 'ProjectsList', 
+      purpose: #STANDARD, 
+      type: #LINEITEM_REFERENCE, 
+      label: 'Projects / Works', 
+      position: 30, 
+      targetElement: '_Projects' 
+    }
+  ]
+   @EndUserText.label: 'Celebrity Id'
+  @UI: { lineItem: [ { position: 10 } ], identification: [ { position: 10 } ] }
+  CelebId;
+  @EndUserText.label: 'Image URL'
+  @UI: { 
+    lineItem: [ { position: 15 } ], 
+    identification: [ { position: 15 } ] 
+  }
+  ImageUrl;
+ @EndUserText.label: 'Name'
+  @UI: { lineItem: [ { position: 20 } ], identification: [ { position: 20 } ] }
+  Name;
+ @EndUserText.label: 'Date of birth'
+  @UI: { lineItem: [ { position: 30 } ], identification: [ { position: 30 } ] }
+  DateOfBirth;
+ @EndUserText.label: 'Country'
+  @UI: { lineItem: [ { position: 40 } ], identification: [ { position: 40 } ] }
+  Country;
+
+  @UI: { 
+    lineItem: [ 
+      { position: 50, label: 'QR Code' },
+      { type: #FOR_ACTION, dataAction: 'GenerateQRCode', label: 'Generate QR Code' }
+    ],
+    identification: [ 
+      { position: 50, label: 'QR Code' },
+      { type: #FOR_ACTION, dataAction: 'GenerateQRCode', label: 'Generate QR Code' }
+    ]
+  }
+  QrCodeUrl;
+}

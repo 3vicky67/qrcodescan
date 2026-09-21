@@ -1,0 +1,37 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_CELEB_HDR alias Celebrity
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use action GenerateQRCode;
+
+  use association _Projects { create; with draft; }
+  use association _Bio { create; with draft; } // <-- ADDED: Exposes Bio creation in projection
+}
+
+define behavior for ZC_CELEB_ITM alias Projects
+{
+  use update;
+  use delete;
+
+  use association _Celebrity { with draft; }
+}
+
+define behavior for ZC_CELEB_BIO alias CelebrityBio
+{
+  use update;
+  use delete;
+
+  use association _Header { with draft; }
+}
