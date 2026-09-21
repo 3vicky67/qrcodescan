@@ -9,13 +9,11 @@ define root view entity ZI_CELEB_HDR
     and _CountryText.Language = $session.system_language
 {
       key celeb_id        as CelebId,
-       @Semantics.imageUrl: true
       // 1. Keep original name (Used for typing and mapping)
       image_url           as ImageUrl,       
-      
       // 2. Duplicate field purely for projecting the image
       @Semantics.imageUrl: true
-      image_url           as ImageUrlDisplay,
+      image_url           as photo,
       name            as Name,
       date_of_birth   as DateOfBirth,
 

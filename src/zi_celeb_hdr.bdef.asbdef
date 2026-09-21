@@ -19,7 +19,7 @@ etag master LastChangedAt
 
   determination AutoCreateBio on modify { create; }
 
-  field ( readonly ) QrCodeUrl, CountryName,ImageUrlDisplay;
+  field ( readonly ) QrCodeUrl, CountryName,photo;
 
   draft action Edit;
   draft action Activate optimized;

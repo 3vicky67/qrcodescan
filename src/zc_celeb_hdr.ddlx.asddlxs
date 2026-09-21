@@ -5,7 +5,7 @@
     typeNamePlural: 'Celebrities',
     title: { type: #STANDARD, value: 'Name' },
     description: { type: #STANDARD, value: 'CelebId' },
-    imageUrl: 'ImageUrl'
+    imageUrl: 'photo'
   }
 }
 annotate view ZC_CELEB_HDR with
@@ -38,10 +38,13 @@ annotate view ZC_CELEB_HDR with
    @EndUserText.label: 'Celebrity Id'
   @UI: { lineItem: [ { position: 10 } ], identification: [ { position: 10 } ] }
   CelebId;
+  // 1. The Text Field: Visible ONLY in Edit Mode
   @EndUserText.label: 'Image URL'
   @UI: { 
-    lineItem: [ { position: 15 } ], 
-    identification: [ { position: 15 } ] 
+    identification: [ { 
+      position: 15,
+      hidden: #(IsActiveEntity)
+    } ] 
   }
   ImageUrl;
  @EndUserText.label: 'Name'

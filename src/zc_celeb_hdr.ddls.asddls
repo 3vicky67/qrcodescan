@@ -6,11 +6,9 @@ define root view entity ZC_CELEB_HDR
   as projection on ZI_CELEB_HDR
 {
   key CelebId,
-   @Semantics.imageUrl: true
-      ImageUrl,           // <--- CHANGED: Reverted back to ImageUrl
-      
+      ImageUrl,           
       @Semantics.imageUrl: true
-      ImageUrlDisplay,    // <--- Keeps the image display functionality
+      photo,    
       Name,
       DateOfBirth,
       
