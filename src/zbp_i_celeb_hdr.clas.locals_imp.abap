@@ -69,7 +69,7 @@ CLASS lhc_Celebrity IMPLEMENTATION.
                         |Debut-year: { ls_bio-DebutYear }\n| &&
                         |Birth Place: { ls_bio-BirthPlace }\n| &&
                         |Language: { ls_bio-Language }\n| &&
-                        |Active-Status: { ls_bio-ActiveStatus }|.
+                        |Active-Status: { ls_bio-ActiveStatusText }|.
 
         " Safely encode the entire string (replaces spaces with %20, \n with %0A, etc.)
         DATA(lv_encoded) = escape( val = lv_text format = cl_abap_format=>e_url ).

@@ -3,7 +3,7 @@
   headerInfo: {
     typeName: 'Celebrity Biography',
     typeNamePlural: 'Biographies',
-    title: { type: #STANDARD, value: 'FullName' }, // Note: fixed 'Fullname' to 'FullName' to match your case
+    title: { type: #STANDARD, value: 'FullName' }, 
     description: { type: #STANDARD, value: 'Profession' }
   }
 }
@@ -66,14 +66,16 @@ annotate view ZC_CELEB_BIO with
   }
   DebutYear;
   
+  // --- UPDATED: Added Criticality and Icon representation for the Dropdown ---
   @EndUserText.label: 'Active status'
   @UI: { 
-    fieldGroup: [ { qualifier: 'Prof', position: 40 } ],
-    identification: [ { position: 80 } ] 
+    lineItem:       [ { position: 35, criticality: 'StatusCriticality', criticalityRepresentation: #WITH_ICON } ],
+    fieldGroup:     [ { qualifier: 'Prof', position: 40, criticality: 'StatusCriticality', criticalityRepresentation: #WITH_ICON } ],
+    identification: [ { position: 80, criticality: 'StatusCriticality', criticalityRepresentation: #WITH_ICON } ] 
   }
   ActiveStatus;
 
-    @EndUserText.label: 'Nationality'
+  @EndUserText.label: 'Nationality'
   @UI: { 
     lineItem: [ { position: 40 } ], 
     fieldGroup: [ { qualifier: 'Personal', position: 10 } ],
@@ -88,13 +90,14 @@ annotate view ZC_CELEB_BIO with
   }
   Country;
 
-    @EndUserText.label: 'birth place'
+  @EndUserText.label: 'birth place'
   @UI: { 
     fieldGroup: [ { qualifier: 'Personal', position: 30 } ],
     identification: [ { position: 110 } ] 
   }
   BirthPlace;
-    @EndUserText.label: 'Mother Tongue'
+  
+  @EndUserText.label: 'Mother Tongue'
   @UI: { 
     fieldGroup: [ { qualifier: 'Personal', position: 40 } ],
     identification: [ { position: 120 } ] 
@@ -102,18 +105,23 @@ annotate view ZC_CELEB_BIO with
   Language;
   
   @EndUserText.label: 'Height'
-
   @UI: { 
     fieldGroup: [ { qualifier: 'Personal', position: 50 } ],
     identification: [ { position: 130 } ] 
   }
   Height;
 
-    @EndUserText.label: 'Instagram account' 
+  @EndUserText.label: 'Instagram account' 
   @UI: { 
     fieldGroup: [ { qualifier: 'Personal', position: 60 } ],
     identification: [ { position: 140 } ] 
   }
   Instagram;
 
+  // --- NEW: Hide the helper fields from the UI so they don't display as empty columns ---
+  @UI.hidden: true
+  ActiveStatusText;
+  
+  @UI.hidden: true
+  StatusCriticality;
 }

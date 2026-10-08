@@ -18,6 +18,8 @@ define view entity ZC_CELEB_BIO
       Language,
       Country,
       ActiveStatus,
+      ActiveStatusText,
+      StatusCriticality,
       LastChangedAt,
       _Header : redirected to parent ZC_CELEB_HDR
 }

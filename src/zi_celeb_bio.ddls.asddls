@@ -20,7 +20,23 @@ define view entity ZI_CELEB_BIO
       instagram     as Instagram,
       language      as Language,
       country       as Country,
+      
+      @ObjectModel.text.element: ['ActiveStatusText']
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_STAT_VH', element: 'StatusCode' } }]
       active_status as ActiveStatus,
+      
+      // --- NEW: Calculate text and color/icon (Criticality) ---
+      case active_status
+        when 'Y' then 'Yes'
+        when 'N' then 'No'
+        else 'Unknown'
+      end as ActiveStatusText,
+      
+      case active_status
+        when 'Y' then 3 // 3 = Positive (Green)
+        when 'N' then 1 // 1 = Negative (Red)
+        else 0          // 0 = Neutral (Grey)
+      end as StatusCriticality,
       
       last_changed_at as LastChangedAt,
 
