@@ -18,9 +18,8 @@ define root view entity ZC_CELEB_HDR
       Country,
       
       CountryName, // Ensure the text field is exposed in the projection
-      
-      @Semantics.imageUrl: true
       QrCodeUrl,
+      QrCodeFileName,
       LastChangedAt,
 
       _Projects : redirected to composition child ZC_CELEB_ITM,

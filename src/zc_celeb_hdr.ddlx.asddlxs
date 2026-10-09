@@ -59,13 +59,13 @@ annotate view ZC_CELEB_HDR with
 
   @UI: { 
     lineItem: [ 
-      { position: 50, label: 'QR Code' },
+      { position: 50, label: 'QR Code', type: #WITH_URL, url: 'QrCodeUrl' },
       { type: #FOR_ACTION, dataAction: 'GenerateQRCode', label: 'Generate QR Code' }
     ],
     identification: [ 
-      { position: 50, label: 'QR Code' },
+      { position: 50, label: 'QR Code', type: #WITH_URL, url: 'QrCodeUrl' },
       { type: #FOR_ACTION, dataAction: 'GenerateQRCode', label: 'Generate QR Code' }
     ]
   }
-  QrCodeUrl;
+  QrCodeFileName;
 }

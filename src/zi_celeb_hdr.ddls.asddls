@@ -22,8 +22,11 @@ define root view entity ZI_CELEB_HDR
       
       // Cast the unreleased data element to a standard ABAP type
       cast( _CountryText.CountryName as abap.char(50) ) as CountryName,
-      @Semantics.imageUrl: true
-      qr_code_url     as QrCodeUrl,
+      // REMOVED: @Semantics.imageUrl: true
+      qr_code_url         as QrCodeUrl,
+      
+      // ADDED: Dynamically generate the filename (e.g., "01.txt")
+      concat(celeb_id, '.txt') as QrCodeFileName,
       
       last_changed_at as LastChangedAt,
       
