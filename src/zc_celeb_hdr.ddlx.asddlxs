@@ -20,7 +20,7 @@ annotate view ZC_CELEB_HDR with
     },
     {
       id:            'BioSection',
-      type:          #IDENTIFICATION_REFERENCE, // <--- CHANGE THIS FROM #LINEITEM_REFERENCE
+      type:          #IDENTIFICATION_REFERENCE, 
       label:         'Biography',
       position:      20,
       targetElement: '_Bio',
@@ -33,12 +33,21 @@ annotate view ZC_CELEB_HDR with
       label: 'Projects / Works', 
       position: 30, 
       targetElement: '_Projects' 
+    },
+    { 
+      id: 'ExtraActivityList', 
+      purpose: #STANDARD, 
+      type: #LINEITEM_REFERENCE, 
+      label: 'Extra Activities', 
+      position: 40, 
+      targetElement: '_Activity' 
     }
   ]
-   @EndUserText.label: 'Celebrity Id'
+  
+  @EndUserText.label: 'Celebrity Id'
   @UI: { lineItem: [ { position: 10 } ], identification: [ { position: 10 } ] }
   CelebId;
-  // 1. The Text Field: Visible ONLY in Edit Mode
+  
   @EndUserText.label: 'Image URL'
   @UI: { 
     identification: [ { 
@@ -47,13 +56,16 @@ annotate view ZC_CELEB_HDR with
     } ] 
   }
   ImageUrl;
- @EndUserText.label: 'Name'
+  
+  @EndUserText.label: 'Name'
   @UI: { lineItem: [ { position: 20 } ], identification: [ { position: 20 } ] }
   Name;
- @EndUserText.label: 'Date of birth'
+  
+  @EndUserText.label: 'Date of birth'
   @UI: { lineItem: [ { position: 30 } ], identification: [ { position: 30 } ] }
   DateOfBirth;
- @EndUserText.label: 'Country'
+  
+  @EndUserText.label: 'Country'
   @UI: { lineItem: [ { position: 40 } ], identification: [ { position: 40 } ] }
   Country;
 

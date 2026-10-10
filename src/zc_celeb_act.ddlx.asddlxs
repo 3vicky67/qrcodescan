@@ -1,0 +1,72 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Extra Activity',
+    typeNamePlural: 'Extra Activities',
+    title: { type: #STANDARD, value: 'WorkType' },
+    description: { type: #STANDARD, value: 'WorkedMovie' }
+  }
+}
+annotate view ZC_CELEB_ACT with
+{
+  @UI.facet: [
+    {
+      id: 'ActivityDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Activity Details',
+      position: 10
+    }
+  ]
+
+  @UI.hidden: true
+  ActivityId;
+
+  @UI.hidden: true
+  CelebId;
+
+  @EndUserText.label: 'Worked Movie/Album'
+  @UI: { 
+    lineItem: [ { position: 10 } ], 
+    identification: [ { position: 10 } ] 
+  }
+  WorkedMovie;
+
+  @EndUserText.label: 'Work Type'
+  @UI: { 
+    lineItem: [ { position: 20 } ], 
+    identification: [ { position: 20 } ] 
+  }
+  WorkType;
+
+  @EndUserText.label: 'Release Date'
+  @UI: { 
+    lineItem: [ { position: 30 } ], 
+    identification: [ { position: 30 } ] 
+  }
+  ReleaseDate;
+  
+  @EndUserText.label: 'Music Composer'
+  @UI: { 
+    identification: [ { position: 35 } ] 
+  }
+  musiccomposer;
+
+  @EndUserText.label: 'Audio File'
+  @UI: { 
+    identification: [ { position: 40 } ] 
+  }
+  SongFile;
+
+  @UI.hidden: true
+  SongMimetype;
+
+  @UI.hidden: true
+  SongFilename;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  HideSong;
+}

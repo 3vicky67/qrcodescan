@@ -17,7 +17,8 @@ define behavior for ZC_CELEB_HDR alias Celebrity
   use action GenerateQRCode;
 
   use association _Projects { create; with draft; }
-  use association _Bio { create; with draft; } // <-- ADDED: Exposes Bio creation in projection
+  use association _Bio { create; with draft; }
+  use association _Activity { create; with draft; } // <-- ADDED
 }
 
 define behavior for ZC_CELEB_ITM alias Projects
@@ -29,6 +30,14 @@ define behavior for ZC_CELEB_ITM alias Projects
 }
 
 define behavior for ZC_CELEB_BIO alias CelebrityBio
+{
+  use update;
+  use delete;
+
+  use association _Header { with draft; }
+}
+
+define behavior for ZC_CELEB_ACT alias Activity
 {
   use update;
   use delete;

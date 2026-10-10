@@ -14,15 +14,15 @@ define root view entity ZC_CELEB_HDR
       
       @Consumption.valueHelpDefinition: [{ entity: { name: 'I_Country', element: 'Country' } }]
       @ObjectModel.text.element: ['CountryName']
-      @UI.textArrangement: #TEXT_ONLY // Shows "India" instead of "IN" or "IN (India)"
+      @UI.textArrangement: #TEXT_ONLY 
       Country,
       
-      CountryName, // Ensure the text field is exposed in the projection
+      CountryName, 
       QrCodeUrl,
       QrCodeFileName,
       LastChangedAt,
 
       _Projects : redirected to composition child ZC_CELEB_ITM,
-      _Bio      : redirected to composition child ZC_CELEB_BIO
+      _Bio      : redirected to composition child ZC_CELEB_BIO,
+      _Activity : redirected to composition child ZC_CELEB_ACT
 }
-

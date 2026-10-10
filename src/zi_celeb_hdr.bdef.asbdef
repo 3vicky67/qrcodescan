@@ -16,6 +16,7 @@ etag master LastChangedAt
 
   association _Projects { create; with draft; }
   association _Bio { create; with draft; }
+  association _Activity { create; with draft; } // ADDED
 
   determination AutoCreateBio on modify { create; }
 
@@ -54,7 +55,6 @@ early numbering
 {
   update; delete;
 
-  // Both keys are read-only! RAP handles CelebId, and Early Numbering handles ItemNo.
   field ( readonly ) CelebId, ItemNo;
 
   association _Celebrity { with draft; }
@@ -70,6 +70,7 @@ early numbering
     CurrencyCode  = currency_code;
   }
 }
+
 // ---------------------------------------------------------------------------
 // 3. CHILD 2: BIO
 // ---------------------------------------------------------------------------
@@ -102,5 +103,38 @@ authorization dependent by _Header
     Country       = country;
     ActiveStatus  = active_status;
     LastChangedAt = last_changed_at;
+  }
+}
+// ---------------------------------------------------------------------------
+// 4. CHILD 3: EXTRA ACTIVITY (ADDED)
+// ---------------------------------------------------------------------------
+define behavior for ZI_CELEB_ACT alias Activity
+persistent table zceleb_act
+draft table zceleb_act_d
+lock dependent by _Header
+authorization dependent by _Header
+{
+  update; delete;
+
+  field ( readonly ) CelebId, HideSong;
+
+  // Triggers logic to hide/show the song file field when WorkType changes
+  determination setSongVisibility on modify { field WorkType; }
+
+  association _Header { with draft; }
+
+  mapping for zceleb_act
+  {
+    ActivityId         = activity_id;
+    CelebId            = celeb_id;
+    WorkedMovie        = worked_movie;
+    WorkType           = work_type;
+    MusicComposer      = music_composer;
+    ReleaseDate        = release_date;
+    HideSong           = hide_song;
+    SongFile           = song_file;
+    SongMimetype       = song_mimetype;
+    SongFilename       = song_filename;
+    LocalLastChangedAt = local_last_changed_at;
   }
 }
